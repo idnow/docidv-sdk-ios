@@ -21,12 +21,12 @@ let package = Package(
         .binaryTarget(
             name: "DocIDV",
             url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.0.0/DocIDV.xcframework.zip",
-            checksum: "92dacbb96b8a2175ed3d292386e156ec01918ae3be1cfd967b3b7e1bfef3674b"
+            checksum: "ee841b27c66fa3a6487fe64d9d0f68f474e8de98f379ef394a464319f2f45251"
         ),
         .binaryTarget(
             name: "DocIDV-without-XS2A",
             url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.0.0/DocIDV-without-XS2A.xcframework.zip",
-            checksum: "b75f659d3aea7ebf93aeffa29d17e9042aba68a4ac6a831270dddc8890695de2"
+            checksum: "8ef40d028089d0d358bcddbcca528fb680301bacdf097e41abbe756d27d1315b"
         )
     ],
     swiftLanguageVersions: [.v5]
