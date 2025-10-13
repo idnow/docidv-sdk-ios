@@ -1,1 +1,12 @@
 
+
+# Swift Package Manager Build Directory
+.build/
+*.xcodeproj/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+
+# IDE
+.vscode/
