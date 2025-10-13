@@ -26,6 +26,7 @@ We support ICAO 9303 documents (passports, ID cards, residence permits): please 
 ## Installation
 
 The DocIDV sdk is only available via Swift Package manager
+![swift_package_manager_choose](/images/swift_package_manager_choose.png)
 
 - Add swift package: `https://github.com/idnow/io.idnow.docidv.ios` as a dependency
 - Put ReadID_UI.xcframework, UnisseySdk.xcframework and FaceTecSDK.xcframework in the app folder (please reach out to IDnow to obtain the xcframeworks)
