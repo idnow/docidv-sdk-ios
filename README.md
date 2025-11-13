@@ -1,7 +1,7 @@
 # DocIDV - IDnow
 
 [![Platform](https://img.shields.io/badge/Platform-iOS-brightgreen.svg)](https://developer.apple.com/ios/)
-[![Swift](https://img.shields.io/badge/Swift-5.9-blue.svg)](https://developer.apple.com/swift/)
+[![Swift](https://img.shields.io/badge/Swift-5.0-blue.svg)](https://developer.apple.com/swift/)
 [![iOS](https://img.shields.io/badge/iOS-14.0-red.svg)](https://developer.apple.com/swift/)
 [![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange)](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange)
 
@@ -38,7 +38,6 @@ This guide provides detailed instructions on how to install, set up, and integra
 
 ## Requirements
 
-* **Xcode:** version 26.0 or higher.
 * **Minimum deployment version:** iOS 14.0.
 * **Swift:** 5.0.
 * **NFC:** An NFC-enabled iPhone (iPhone 7 or newer models).
