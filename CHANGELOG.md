@@ -1,34 +1,20 @@
 # Changelog
 
-## 1.1.0 (19 Nov 2025)
-
+## 1.1.0 - 19 Nov 2025
 ### Features:
-Accessibility support on several components:
-- Greeting & Onboarding:
-    - Streamlined token entry experience
-    - Accessible terms & conditions presentation
-    - Clear process guidance for all users
-- SMS OTP Verification
-    - Enhanced phone number verification flow
-    - Improved identity confirmation experience
-- Document Capture (OCR)
-    - Voice-guided document presentation instructions
-    - Accessible camera controls and feedback
-    - Clear visual and audio cues
-- Security Features Verification
-    - Accessible document validity checks
-    - Real-time feedback for various security verifications
-- NFC Document Reading
-    - Enhanced near-field communication experience
-    - Accessible chip reading instructions
-- Liveness Detection
-    - Inclusive biometric verification
-    - Accessible real-person verification process
+- Screen redesign to comply with iOS accessibility guidelines.
+- Support for light and dark mode.
+- Adjustable text size and spacing (honors system preferences).
+- Improved compatibility with Voice Over (labels, focus order, actions).
+- Enhanced color contrast for better readability.
+- Clear announcements for component states (error, selected, disabled, progress).
+- Visible and consistent focus indicators.
+- Proper content descriptions for images and icons.
 
 ### Fixes:
-- Optimized memory usage and app responsiveness
-- Several bugfixes to improve user experience
+- Optimized memory usage and app responsiveness.
+- Several bugfixes to improve user experience.
 
-## 1.0.0 (24 Jun 2025)
-
+## 1.0.0 - 24 Jun 2025
+### Features:
 - Initial version of the DocIDV SDK with the AutoIdent flow support
