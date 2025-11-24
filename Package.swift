@@ -28,12 +28,12 @@ let package = Package(
         .binaryTarget(
             name: "DocIDV",
             url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.1.0/DocIDV.xcframework.zip",
-            checksum: "646ba82794fdbb253d66a763a8f991d0c3adc80ef4495c9a95791f885fcefc7c"
+            checksum: "262b9c72ef2aab4f8bb8bdf4957edd357de417612152dd6495c8ce7ec75b730d"
         ),
         .binaryTarget(
             name: "DocIDV-without-XS2A",
             url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.1.0/DocIDV-without-XS2A.xcframework.zip",
-            checksum: "b0886e3b2a37d76822bfa2fc1c0b5cd290da3dbf11e610081261cdd0729d5000"
+            checksum: "946d3de851d684867d9a336135087699946dbc58f3a8d2af5494bc11a263af68"
         ),
         // Define the third parties dependencies imported locally.
         .binaryTarget(
