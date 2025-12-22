@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0 - 22 dec 2025
+### Fixes:
+- Fixed a liveness video issue when a NFC flow completed before
+
 ## 1.1.0 - 19 Nov 2025
 ### Features:
 - Screen redesign to comply with iOS accessibility guidelines.
