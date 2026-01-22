@@ -20,20 +20,20 @@ let package = Package(
     ],
     // Define external dependencies (via SPM).
     dependencies: [
-        .package(url: "https://github.com/idnow/sunflower-sdk-ios.git", exact: "1.4.10"),
+        .package(url: "https://github.com/idnow/sunflower-sdk-ios.git", exact: "2.1.4"),
         .package(url: "https://github.com/unissey/sdk-ios.git", exact: "4.0.0"),
     ],
     targets: [
         // Define our 2 SDK internal binaries and their location.
         .binaryTarget(
             name: "DocIDV",
-            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.1.1/DocIDV.xcframework.zip",
-            checksum: "db2783df61a20d92f2ec5108fd043121daa4a8780e82687d8d55a5ecd1c6ac54"
+            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.2.0/DocIDV.xcframework.zip",
+            checksum: "f6639f4e79164dc492209b55e7c84e528639d0df57e8bc42356a6fe48a029199"
         ),
         .binaryTarget(
             name: "DocIDV-without-XS2A",
-            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.1.1/DocIDV-without-XS2A.xcframework.zip",
-            checksum: "aa6cd3614035db3ce53051a5020a163136c95d1101a43e36c97448231afb1580"
+            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.2.0/DocIDV-without-XS2A.xcframework.zip",
+            checksum: "2023fb5cbba709a033c029e0aef2f2267618985e0159018ef23626ecf3189a7c"
         ),
         // Define the third parties dependencies imported locally.
         .binaryTarget(
