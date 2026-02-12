@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0] - 2025-02-12
+### Added
+- Full country names translation in screens
+
+### Fixed
+- Stability enhancements about
+
 ## [1.2.0] - 2025-01-22
 ### Added
 - Further progress toward full WCAG 2.1 compliance.
