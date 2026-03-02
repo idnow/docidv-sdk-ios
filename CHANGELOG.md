@@ -1,5 +1,13 @@
 # Changelog
 
+
+## [1.4.0] - 2025-03-02
+### Added
+- Automatic recovery when connection is lost and restored during identification.
+
+### Fixed
+- Several bugfixes and technical improvements. 
+
 ## [1.3.0] - 2025-02-12
 ### Added
 - Full country names translation in screens
