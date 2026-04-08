@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.6.0] - 2025-03-31
+### Added
+- eID Governikus feature support
 
 ## [1.4.0] - 2025-03-02
 ### Added
