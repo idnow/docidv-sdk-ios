@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.0] - 2025-04-30
+### Added
+- Update eID Governikus version to 1.3.4
+
 ## [1.6.0] - 2025-03-31
 ### Added
 - eID Governikus feature support
