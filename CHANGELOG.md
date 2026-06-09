@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0] - 2025-05-18
+### Added
+- QES support
+
+### Fixed
+- Fixed a crash when the SDK is used in a Swift 6 app.
+- Fixed the issue where two error screens where shown in a row.
+
 ## [1.7.0] - 2025-04-30
 ### Added
 - Update eID Governikus version to 1.3.4
