@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
-// swift-module-flags: -target x86_64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=unchecked -O -enable-bare-slash-regex -module-name ReadID_UI
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target x86_64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=unchecked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name ReadID_UI
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import AVFoundation
 import Accelerate
 import AudioToolbox
@@ -14,6 +14,7 @@ import CoreMedia
 import CoreNFC
 import CoreTelephony
 import CoreVideo
+import CryptoKit
 import Foundation
 import ImageIO
 import MachO
@@ -31,19 +32,27 @@ import _StringProcessing
 import _SwiftConcurrencyShims
 import os
 import simd
+
+
+
+
 public struct VeriffResponse : Swift.Decodable {
   public let status: Swift.String
   public let code: Swift.Int?
   public let message: Swift.String?
   public let verification: ReadID_UI.VeriffVerification?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(status: Swift.String, code: Swift.Int?, message: Swift.String?, verification: ReadID_UI.VeriffVerification?)
+  #endif
   public init(from decoder: any Swift.Decoder) throws
 }
 public enum NFCResultDataMode : Swift.String, Swift.CaseIterable {
   case none
   case simple
   case all
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.NFCResultDataMode]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [ReadID_UI.NFCResultDataMode] {
@@ -56,54 +65,81 @@ public enum NFCResultDataMode : Swift.String, Swift.CaseIterable {
 public class MRTDSessionManager {
   public static var callbackQueue: Dispatch.DispatchQueue
   public init(configuration: ReadID_UI.ConnectorConfiguration)
-  public func newSession(resultHandler: @escaping (ReadID_UI.ReadIDSession?, (any Swift.Error)?) -> ())
   @objc deinit
 }
 public protocol CNISData : ReadID_UI.MRZData {
   var documentCode: Swift.String { get }
   mutating func setDocumentCode(_ documentCode: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentCodeImage: CoreGraphics.CGImage? { get }
+  #endif
   var issuingCountry: Swift.String { get }
   mutating func setIssuingCountry(_ issuingCountry: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var issuingCountryImage: CoreGraphics.CGImage? { get }
+  #endif
   var lastName: Swift.String { get }
   mutating func setLastName(_ lastName: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var lastNameImage: CoreGraphics.CGImage? { get }
+  #endif
   var issuingDepartment: Swift.String { get }
   mutating func setIssuingDepartment(_ issuingDepartment: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var issuingDepartmentImage: CoreGraphics.CGImage? { get }
+  #endif
   var issuingOffice: Swift.String { get }
   mutating func setIssuingOffice(_ issuingOffice: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var issuingOfficeImage: CoreGraphics.CGImage? { get }
+  #endif
   var dateOfIssue: Swift.String { get }
   mutating func setDateOfIssue(_ dateOfIssue: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var dateOfIssueImage: CoreGraphics.CGImage? { get }
+  #endif
   var issuingDepartment2: Swift.String { get }
   mutating func setIssuingDepartment2(_ issuingDepartment2: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var issuingDepartment2Image: CoreGraphics.CGImage? { get }
+  #endif
   var documentNumber: Swift.String { get }
   mutating func setDocumentNumber(_ documentNumber: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentNumberImage: CoreGraphics.CGImage? { get }
+  #endif
   var documentNumberCheckDigit: Swift.String { get }
   mutating func setDocumentNumberCheckDigit(_ documentNumberCheckDigit: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentNumberCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
   var isDocumentNumberCheckDigitCorrect: Swift.Bool { get }
   var firstName: Swift.String { get }
   mutating func setFirstName(_ firstName: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var firstNameImage: CoreGraphics.CGImage? { get }
+  #endif
   var dateOfBirth: Swift.String { get }
   mutating func setDateOfBirth(_ dateOfBirth: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var dateOfBirthImage: CoreGraphics.CGImage? { get }
+  #endif
   var dateOfBirthCheckDigit: Swift.String { get }
   mutating func setDateOfBirthCheckDigit(_ dateOfBirthCheckDigit: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var dateOfBirthCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
   var isDateOfBirthCheckDigitCorrect: Swift.Bool { get }
   var gender: Swift.String { get }
   mutating func setGender(_ gender: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var genderImage: CoreGraphics.CGImage? { get }
+  #endif
   var compositeCheckDigit: Swift.String { get }
   mutating func setCompositeCheckDigit(_ compositeCheckDigit: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var compositeCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
   var isCompositeCheckDigitCorrect: Swift.Bool { get }
 }
 public enum ManualInputMode : Swift.String, Swift.CaseIterable {
@@ -111,7 +147,9 @@ public enum ManualInputMode : Swift.String, Swift.CaseIterable {
   case mrzOnly
   case canOnly
   case all
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.ManualInputMode]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [ReadID_UI.ManualInputMode] {
@@ -121,6 +159,9 @@ public enum ManualInputMode : Swift.String, Swift.CaseIterable {
     get
   }
 }
+
+
+
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class InternalReadIDButton : UIKit.UIButton {
   @objc @IBInspectable @_Concurrency.MainActor @preconcurrency public var cornerRadius: CoreFoundation.CGFloat {
     @objc get
@@ -194,14 +235,18 @@ public enum ManualInputMode : Swift.String, Swift.CaseIterable {
     @objc get
     @objc set
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func traitCollectionDidChange(_ previousTraitCollection: UIKit.UITraitCollection?)
+  #endif
   @objc deinit
 }
 public protocol TD2Data : ReadID_UI.TDData {
   var compositeCheckDigit: Swift.String { get }
   mutating func setCompositeCheckDigit(_ compositeCheckDigit: Swift.String) throws
   var isCompositeCheckDigitCorrect: Swift.Bool { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   var compositeCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
 }
 public enum CommitStatus {
   case uncommitted
@@ -216,13 +261,25 @@ public protocol TD3Data : ReadID_UI.TDData {
   var optionalDataCheckDigit: Swift.String { get }
   mutating func setOptionalDataCheckDigit(_ optionalDataCheckDigit: Swift.String) throws
   var isOptionalDataCheckDigitCorrect: Swift.Bool { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   var optionalDataCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
   var compositeCheckDigit: Swift.String { get }
   mutating func setCompositeCheckDigit(_ compositeCheckDigit: Swift.String) throws
   var isCompositeCheckDigitCorrect: Swift.Bool { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   var compositeCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
 }
-extension Foundation.Data : Swift.ExpressibleByStringLiteral {
+extension Foundation.Data : @retroactive Swift.ExpressibleByExtendedGraphemeClusterLiteral {
+  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, macOS 10.10, *)
+  public typealias ExtendedGraphemeClusterLiteralType = Foundation.Data.StringLiteralType
+}
+extension Foundation.Data : @retroactive Swift.ExpressibleByUnicodeScalarLiteral {
+  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, macOS 10.10, *)
+  public typealias UnicodeScalarLiteralType = Foundation.Data.StringLiteralType
+}
+extension Foundation.Data : @retroactive Swift.ExpressibleByStringLiteral {
   public typealias StringLiteralType = Swift.String
   public var hexadecimalString: Swift.String {
     get
@@ -231,27 +288,34 @@ extension Foundation.Data : Swift.ExpressibleByStringLiteral {
     get
   }
   public init(stringLiteral value: Foundation.Data.StringLiteralType)
-  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, macOS 10.10, *)
-  public typealias ExtendedGraphemeClusterLiteralType = Foundation.Data.StringLiteralType
-  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, macOS 10.10, *)
-  public typealias UnicodeScalarLiteralType = Foundation.Data.StringLiteralType
 }
+
 public protocol EDLData : ReadID_UI.MRZData {
   var documentCode: Swift.String { get }
   mutating func setDocumentCode(_ documentCode: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentCodeImage: CoreGraphics.CGImage? { get }
+  #endif
   var configuration: Swift.String { get }
   mutating func setConfiguration(_ configuration: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var configurationImage: CoreGraphics.CGImage? { get }
+  #endif
   var discretionaryData: Swift.String { get }
   mutating func setDiscretionaryData(_ discretionaryData: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var discretionaryDataImage: CoreGraphics.CGImage? { get }
+  #endif
   var compositeInput: Swift.String { get }
   mutating func setCompositeInput(_ compositeInput: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var compositeInputImage: CoreGraphics.CGImage? { get }
+  #endif
   var compositeCheckDigit: Swift.String { get }
   mutating func setCompositeCheckDigit(_ compositeCheckDigit: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var compositeCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
   var isCompositeCheckDigitCorrect: Swift.Bool { get }
   var bapInput: Swift.String { get }
 }
@@ -287,7 +351,9 @@ public enum NFCLocation : Swift.Int, Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -295,15 +361,8 @@ public enum NFCLocation : Swift.Int, Swift.CustomStringConvertible {
 }
 public enum Base {
 }
-#if compiler(>=5.3) && $NoncopyableGenerics
-extension Swift.Optional : Swift.Comparable where Wrapped : Swift.Comparable {
-  public static func < (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
-  public static func <= (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
-  public static func > (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
-  public static func >= (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
-}
-#else
-extension Swift.Optional : Swift.Comparable where Wrapped : Swift.Comparable {
+#if compiler(>=5.3) && $NonescapableTypes
+extension Swift.Optional : @retroactive Swift.Comparable where Wrapped : Swift.Comparable {
   public static func < (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
   public static func <= (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
   public static func > (lhs: Swift.Optional<Wrapped>, rhs: Swift.Optional<Wrapped>) -> Swift.Bool
@@ -324,6 +383,7 @@ public enum OperationResult : Swift.Equatable, Swift.CustomStringConvertible {
   }
   public static func == (lhs: ReadID_UI.OperationResult, rhs: ReadID_UI.OperationResult) -> Swift.Bool
 }
+
 @_hasMissingDesignatedInitializers public class MRTDReadRequest {
   @objc deinit
 }
@@ -346,7 +406,9 @@ public enum PageType : Swift.String, Swift.CaseIterable {
   case machineReadableVisaTypeA
   case machineReadableVisaTypeB
   public static var allCases: [ReadID_UI.PageType]
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.PageType]
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
@@ -357,9 +419,10 @@ extension ReadID_UI.PageCaptureConfiguration {
   public static func == (lhs: ReadID_UI.PageCaptureConfiguration, rhs: ReadID_UI.PageCaptureConfiguration) -> Swift.Bool
   public static func ~= (lhs: ReadID_UI.PageCaptureConfiguration, rhs: ReadID_UI.PageCaptureConfiguration) -> Swift.Bool
 }
-extension CoreFoundation.CGRect : Swift.Hashable {
+extension CoreFoundation.CGRect : @retroactive Swift.Hashable {
   public func hash(into hasher: inout Swift.Hasher)
 }
+
 @_hasMissingDesignatedInitializers public class MRTDManager {
   public static var callbackQueue: Dispatch.DispatchQueue
   public static var isInternalNFCSupported: Swift.Bool {
@@ -369,10 +432,12 @@ extension CoreFoundation.CGRect : Swift.Hashable {
     get
     set
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static var errorMessage: Swift.String? {
     get
     set
   }
+  #endif
   public static func addListener(listener: any ReadID_UI.AdapterStatusListener)
   public static func removeListener(listener: any ReadID_UI.AdapterStatusListener)
   public static func removeAllListeners()
@@ -395,7 +460,9 @@ public enum AccessControlOption : Swift.String, Swift.CustomStringConvertible, S
   public var description: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.AccessControlOption]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [ReadID_UI.AccessControlOption] {
@@ -405,8 +472,10 @@ public enum AccessControlOption : Swift.String, Swift.CustomStringConvertible, S
     get
   }
 }
-@_hasMissingDesignatedInitializers public class HttpRequest {
+@_hasMissingDesignatedInitializers final public class HttpRequest {
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func setupPinning(sha256: Swift.String?) throws
+  #endif
   public static func setupPinning(sha256: [Swift.String]) throws
   @objc deinit
 }
@@ -461,7 +530,9 @@ public enum NFCChipSupport : Swift.Int, Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -476,7 +547,9 @@ public enum NFCChipSupport : Swift.Int, Swift.CustomStringConvertible {
 final public class CNISDataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.CNISData)?
+  #endif
   @objc deinit
 }
 public struct ErrorResponseError : Swift.Error, Swift.Decodable {
@@ -488,8 +561,42 @@ public struct ErrorResponse : Swift.Error, Swift.Decodable {
   public let code: Swift.Int
   public let message: Swift.String
   public let errors: [ReadID_UI.ErrorResponseError]?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(code: Swift.Int, message: Swift.String, errors: [ReadID_UI.ErrorResponseError]?)
+  #endif
   public init(from decoder: any Swift.Decoder) throws
+}
+extension Foundation.FileManager {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var sessionIdPath: Foundation.URL? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var sessionId: Swift.String? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var dtcPath: Foundation.URL? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var dtc: ReadID_UI.DTC? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var dtcSessionIdPath: Foundation.URL? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var dtcSessionId: Swift.String? {
+    get
+  }
+  #endif
 }
 public class NFCResultScreenConfiguration {
   public var shouldShowFaceImage: Swift.Bool
@@ -517,6 +624,7 @@ public struct AAConfig {
   public let digestAlgorithm: Swift.String
   public let signatureAlgorithm: Swift.String
 }
+
 public struct ActiveAuthenticationResult {
   public var aaConfig: ReadID_UI.AAConfig? {
     get
@@ -533,15 +641,20 @@ public struct VerifyVeriffResponse : Swift.Decodable {
   public let veriffResponse: ReadID_UI.VeriffResponse?
   public let error: ReadID_UI.ErrorResponse?
   public let submissionId: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(state: ReadID_UI.OrchestrationState, veriffResponse: ReadID_UI.VeriffResponse?, error: ReadID_UI.ErrorResponse?, submissionId: Swift.String?)
+  #endif
   public init(from decoder: any Swift.Decoder) throws
 }
 final public class TD1DataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.TD1Data)?
+  #endif
   @objc deinit
 }
+
 @_hasMissingDesignatedInitializers public class ReadIDSession {
   public var sessionId: Swift.String {
     get
@@ -579,7 +692,9 @@ final public class TD1DataFactory {
   }
   public init()
   @objc deinit
+  #if compiler(>=5.3) && $NonescapableTypes
   public func saveState() -> ReadID_UI.ReadIDSession.ReadIDSessionState?
+  #endif
   public func restoreState(from: ReadID_UI.ReadIDSession.ReadIDSessionState) throws
   @_hasMissingDesignatedInitializers public class ReadIDSessionState {
     @objc deinit
@@ -610,7 +725,9 @@ public struct OnfidoResponse : Swift.Decodable {
 final public class TD2DataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.TD2Data)?
+  #endif
   @objc deinit
 }
 public enum AuthMethod {
@@ -629,7 +746,9 @@ public enum DocumentType : Swift.String, Swift.CaseIterable {
   case drivingLicence
   case euDrivingLicence
   public static var allCases: [ReadID_UI.DocumentType]
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.DocumentType]
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
@@ -643,10 +762,14 @@ public enum DocumentType : Swift.String, Swift.CaseIterable {
   public var dateFormat: ReadID_UI.DateFormat
   public var dateSeparator: ReadID_UI.DateSeparator
   public var shouldMaskPersonalData: Swift.Bool
-  public var baseUrl: Swift.String
+  public var baseUrl: Swift.String {
+    get
+    set
+  }
   public var accessKey: Swift.String?
   public var oauthToken: Swift.String?
   public var shouldUsePinning: Swift.Bool
+  public var tlsPins: [Swift.String]?
   public var shouldOnlyShowInstructionsOnFirstUse: Swift.Bool
   public var shouldAskDismissConfirmation: Swift.Bool
   public var instructionsPlayCount: Swift.Int
@@ -681,21 +804,41 @@ public enum AdapterStatus {
 public protocol TD1Data : ReadID_UI.TDData {
   var optionalData2: Swift.String { get }
   mutating func setOptionalData2(_ optionalData2: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var optionalData2Image: CoreGraphics.CGImage? { get }
+  #endif
   var compositeCheckDigit: Swift.String { get }
   mutating func setCompositeCheckDigit(_ compositeCheckDigit: Swift.String) throws
   var isCompositeCheckDigitCorrect: Swift.Bool { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   var compositeCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
 }
 public struct ConnectorConfiguration {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(baseURL: Foundation.URL, accessKey: Swift.String, customHeaders: [Swift.String : Swift.String]? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(baseURL: Foundation.URL, readyToken: Swift.String, customHeaders: [Swift.String : Swift.String]? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(baseURL: Foundation.URL, oAuthToken: Swift.String, customHeaders: [Swift.String : Swift.String]? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(baseURL: Foundation.URL, username: Swift.String, password: Swift.String, customHeaders: [Swift.String : Swift.String]? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(baseURL: Foundation.URL, accessKey: Swift.String, applicationLevelEncryptionPins: [Swift.String], customHeaders: [Swift.String : Swift.String]? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(baseURL: Foundation.URL, readyToken: Swift.String, applicationLevelEncryptionPins: [Swift.String], customHeaders: [Swift.String : Swift.String]? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(baseURL: Foundation.URL, oAuthToken: Swift.String, applicationLevelEncryptionPins: [Swift.String], customHeaders: [Swift.String : Swift.String]? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(baseURL: Foundation.URL, username: Swift.String, password: Swift.String, applicationLevelEncryptionPins: [Swift.String], customHeaders: [Swift.String : Swift.String]? = nil) throws
+  #endif
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class ReadIDNavigationController : UIKit.UINavigationController {
   @_Concurrency.MainActor @preconcurrency @objc override dynamic open var shouldAutorotate: Swift.Bool {
@@ -710,11 +853,17 @@ public struct ConnectorConfiguration {
   @_Concurrency.MainActor @preconcurrency @objc override dynamic open var preferredStatusBarStyle: UIKit.UIStatusBarStyle {
     @objc get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(iOS 5.0, *)
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(navigationBarClass: Swift.AnyClass?, toolbarClass: Swift.AnyClass?)
+  #endif
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(rootViewController: UIKit.UIViewController)
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  #endif
   @objc deinit
 }
 public protocol MRTDConfigurationPublicProperties {
@@ -847,7 +996,7 @@ public struct PACEResult {
   }
   @objc @IBInspectable @_Concurrency.MainActor @preconcurrency public var rotationOffset: Swift.Int
   @objc @available(*, deprecated, message: "documentOverlay is used for this, no separate guidance indicator is used anymore")
-  @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var guidanceIndicator: UIKit.UIView?
+  @IBOutlet @_Concurrency.MainActor @preconcurrency public var guidanceIndicator: UIKit.UIView?
   @objc @IBInspectable @_Concurrency.MainActor @preconcurrency public var maskColor: UIKit.UIColor {
     @objc get
     @objc set
@@ -863,24 +1012,24 @@ public struct PACEResult {
   @objc @IBInspectable @_Concurrency.MainActor @preconcurrency public var showFaceIndicatorInOverlay: Swift.Bool
   @objc @IBInspectable @_Concurrency.MainActor @preconcurrency public var showMRZIndicatorInOverlay: Swift.Bool
   @objc @IBInspectable @_Concurrency.MainActor @preconcurrency public var automaticallyManageFrameProcessing: Swift.Bool
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var overlayFaceImagePlaceholder: UIKit.UIView?
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var manualCaptureButton: UIKit.UIButton? {
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var overlayFaceImagePlaceholder: UIKit.UIView?
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var manualCaptureButton: UIKit.UIButton? {
     @objc get
     @objc set
   }
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var documentOverlay: UIKit.UIView? {
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var documentOverlay: UIKit.UIView? {
     @objc get
     @objc set
   }
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var overlayMRZPlaceholder: UIKit.UIView?
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var overlayMRZPlaceholder: UIKit.UIView?
   @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var delegate: Swift.AnyObject?
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var progressIndicator: (any ReadID_UI.VIZProgressIndicator)?
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var dbgSharp: UIKit.UILabel?
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var dbgGlare: UIKit.UILabel?
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var dbgFingers: UIKit.UILabel?
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var dbgMRZ: UIKit.UILabel?
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var dbgFace: UIKit.UILabel?
-  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency weak public var dgbQR: UIKit.UILabel?
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var progressIndicator: (any ReadID_UI.VIZProgressIndicator)?
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var dbgSharp: UIKit.UILabel?
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var dbgGlare: UIKit.UILabel?
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var dbgFingers: UIKit.UILabel?
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var dbgMRZ: UIKit.UILabel?
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var dbgFace: UIKit.UILabel?
+  @objc @IBOutlet @_Concurrency.MainActor @preconcurrency public var dgbQR: UIKit.UILabel?
   @_Concurrency.MainActor @preconcurrency public var hasTorch: Swift.Bool {
     get
   }
@@ -888,18 +1037,26 @@ public struct PACEResult {
     get
     set
   }
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func willMove(toWindow newWindow: UIKit.UIWindow?)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func willMove(toWindow _: UIKit.UIWindow?)
+  #endif
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToSuperview()
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "Use capturePage(pageConfiguration:alternativePageConfigurations:captureRequestConfiguration:readIDSession:callback:)")
   @_Concurrency.MainActor @preconcurrency public func capturePage(pageConfiguration: ReadID_UI.PageCaptureConfiguration, alternativePageConfigurations: [ReadID_UI.PageCaptureConfiguration]?, captureConfiguration: ReadID_UI.CaptureRequestConfiguration, session: ReadID_UI.ReadIDSession, callback: @escaping ReadID_UI.VisualDocumentCaptureCallback)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public func capturePage(pageConfiguration: ReadID_UI.PageCaptureConfiguration, alternativePageConfigurations: [ReadID_UI.AlternativePageCaptureConfiguration]?, captureRequestConfiguration: ReadID_UI.CaptureRequestConfiguration, readIDSession: ReadID_UI.ReadIDSession, callback: @escaping ReadID_UI.VisualDocumentCaptureCallback)
+  #endif
   @_Concurrency.MainActor @preconcurrency public func resumeVIZProcessor() throws
   @_Concurrency.MainActor @preconcurrency public func suspendFrameProcessing() throws
   @_Concurrency.MainActor @preconcurrency public func cancelPageCapture()
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
   @objc deinit
 }
 public class UIResources {
@@ -926,16 +1083,122 @@ public class UIResources {
   public var buttonContentInsets: UIKit.UIEdgeInsets
   public var buttonIconSize: CoreFoundation.CGFloat
   public var wireframeStrokeWidth: CoreFoundation.CGFloat
+  public var margin: CoreFoundation.CGFloat
+  public var marginTop: CoreFoundation.CGFloat
+  public var marginTopLandscape: CoreFoundation.CGFloat
+  public var titleBodySpacing: CoreFoundation.CGFloat
+  public var titleBodySpacingLandscape: CoreFoundation.CGFloat
+  public var spacing: CoreFoundation.CGFloat
+  public var spacingLandscape: CoreFoundation.CGFloat
+  public var buttonSpacing: CoreFoundation.CGFloat
+  public var buttonSpacingLandscape: CoreFoundation.CGFloat
+  public var marginBottom: CoreFoundation.CGFloat
+  public var marginBottomLandscape: CoreFoundation.CGFloat
+  public var contentButtonSpacing: CoreFoundation.CGFloat
+  public var contentButtonSpacingLandscape: CoreFoundation.CGFloat
+  public var buttonWidth: CoreFoundation.CGFloat?
+  public struct ReadIDReplayButtonConfiguration {
+    public init(paddingVertical: CoreFoundation.CGFloat = 8, paddingHorizontal: CoreFoundation.CGFloat = 16, cornerRadius: CoreFoundation.CGFloat = 24)
+  }
+  public var readIDAnimationReplayButtonConfig: ReadID_UI.UIResources.ReadIDReplayButtonConfiguration
   public func styleSecondaryButton(_ button: ReadID_UI.InternalReadIDButton, styleBackground: Swift.Bool = true, setEdgeInsets: Swift.Bool = true)
   public func styleButton(_ button: ReadID_UI.InternalReadIDButton, styleBackground: Swift.Bool = true, setEdgeInsets: Swift.Bool = true)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func styleLabel(_ label: UIKit.UILabel, style: UIKit.UIFont.TextStyle? = .body, font: UIKit.UIFont? = nil, textSize: CoreFoundation.CGFloat? = nil, textColor: UIKit.UIColor? = nil, isBold: Swift.Bool = false)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func styleTextView(_ textView: UIKit.UITextView, style: UIKit.UIFont.TextStyle? = .body, font: UIKit.UIFont? = nil, textSize: CoreFoundation.CGFloat? = nil, textColor: UIKit.UIColor? = nil, isBold: Swift.Bool = false, htmlString: Swift.String? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func styleTitleLabel(_ label: UIKit.UILabel, style: UIKit.UIFont.TextStyle? = nil, textSize: CoreFoundation.CGFloat? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func styleTitleTextView(_ textView: UIKit.UITextView, style: UIKit.UIFont.TextStyle? = nil, textSize: CoreFoundation.CGFloat? = nil, htmlString: Swift.String? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func styleTextField(_ textField: UIKit.UITextField, style: UIKit.UIFont.TextStyle = .body, font: UIKit.UIFont? = nil)
+  #endif
   public func styleSegmentedControl(_ segmentedControl: UIKit.UISegmentedControl)
   @objc deinit
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public struct NFCResult {
   public let readIDSession: ReadID_UI.ReadIDSession?
   public var faceImage: UIKit.UIImage? {
@@ -949,7 +1212,9 @@ public enum DateFormat : Swift.String {
   case DDMMYY
   case MMDDYY
   case YYMMDD
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -979,6 +1244,13 @@ public struct ValidateIProovVerifyTokenResponse : Swift.Decodable {
   }
   public init(from decoder: any Swift.Decoder) throws
 }
+
+
+
+
+
+
+
 public enum NFCAccessKey : Swift.Equatable {
   case icao(documentType: ReadID_UI.DocumentType, documentNumber: Swift.String, dateOfBirth: Swift.String, dateOfExpiry: Swift.String)
   case edl(mrz: Swift.String)
@@ -989,19 +1261,12 @@ public protocol MRZData {
   var mrz: any ReadID_UI.MachineReadableZone { get }
 }
 extension ReadID_UI.MRZData {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var binaryImage: CoreGraphics.CGImage? {
     get
   }
+  #endif
   public func toString() -> Swift.String
-}
-public struct AnalyticsConfiguration {
-  public var postEventsURL: Foundation.URL {
-    get
-  }
-  public var authMethod: ReadID_UI.AuthMethod {
-    get
-  }
-  public init?(postEventsURL: Foundation.URL? = URL(string: "https://dev.ridtest.nl/api/v1/analytics/events"), authMethod: ReadID_UI.AuthMethod)
 }
 public enum CancelReason {
   case UserRequested
@@ -1015,11 +1280,16 @@ public enum CancelReason {
     get
   }
 }
+
+
+
 public protocol MRVBData : ReadID_UI.TDData {
 }
 @_hasMissingDesignatedInitializers public class ReadIDUI {
   public typealias CompletionHandler = (ReadID_UI.ReadIDResult) -> Swift.Void
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func identify(on navigationController: UIKit.UINavigationController, lastViewController: UIKit.UIViewController? = nil, flow: ReadID_UI.Flow, handler: @escaping ReadID_UI.ReadIDUI.CompletionHandler) throws
+  #endif
   public static func identify(from viewController: UIKit.UIViewController, modalPresentationStyle: UIKit.UIModalPresentationStyle = .fullScreen, flow: ReadID_UI.Flow, handler: @escaping ReadID_UI.ReadIDUI.CompletionHandler) throws
   @objc deinit
 }
@@ -1070,6 +1340,8 @@ public enum ReadIDColor {
   case passportSymbolColor
   case passportInnerPageColor
   case passportInnerPageContentColor
+  case passportThicknessColor
+  case passportInnerPageThicknessColor
   case titleTextColor
   case nfcTouchPointColor
   case placeholderTextColor
@@ -1079,6 +1351,15 @@ public enum ReadIDColor {
   case vizDarkOverlayColor
   case vizCaptureBackButtonColor
   case animationBackgroundColor
+  case replayButtonBackgroundColor
+  case replayButtonContentColor
+  case idColor
+  case drivingLicenseColor
+  case cnisIdColor
+  case idContentColor
+  case drivingLicenseContentColor
+  case idThicknessColor
+  case drivingLicenseThicknessColor
   public static func == (a: ReadID_UI.ReadIDColor, b: ReadID_UI.ReadIDColor) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -1088,48 +1369,74 @@ public enum ReadIDColor {
 final public class EDLDataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.EDLData)?
+  #endif
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class X509Certificate {
   convenience public init(from: Foundation.Data) throws
   @objc deinit
+  #if compiler(>=5.3) && $NonescapableTypes
   public var serialNumber: Swift.String? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var publicKey: ReadID_UI.PublicKey? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var signatureAlgorithm: Swift.String? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var sha1ThumbPrint: Foundation.Data? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var issuer: Swift.String? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var issuerEncoded: Foundation.Data? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var authorityKeyIdentifier: Foundation.Data? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var subject: Swift.String? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var subjectEncoded: Foundation.Data? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var subjectKeyIdentifier: Foundation.Data? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var notBefore: Foundation.Date? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var notAfter: Foundation.Date? {
     get
   }
+  #endif
   public var inValidPeriod: Swift.Bool {
     get
   }
@@ -1144,11 +1451,14 @@ final public class EDLDataFactory {
   }
   public func wasSignedBy(_ cert: ReadID_UI.X509Certificate) -> Swift.Bool
 }
+
 public enum FeatureRequirement : Swift.String {
   case notRequired
   case preferred
   case required
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -1185,7 +1495,9 @@ public enum Application : Swift.UInt8 {
   case Root
   case ICAO
   case EU_EDL
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.UInt8)
+  #endif
   public typealias RawValue = Swift.UInt8
   public var rawValue: Swift.UInt8 {
     get
@@ -1216,12 +1528,16 @@ public struct CategoryInfo {
   public let restrictionCode: Swift.String?
   public let restrictionSign: Swift.String?
   public let restrictionValue: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
   public var dateOfIssuanceFormatyyyyMMdd: Swift.String? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var dateOfExpiryFormatyyyyMMdd: Swift.String? {
     get
   }
+  #endif
 }
 public class VIZConfirmationScreenConfiguration {
   @available(*, deprecated, message: "This property will be removed in a future release")
@@ -1235,18 +1551,23 @@ extension ReadID_UI.Base {
   public enum DocumentType : Swift.String {
     case ICAO_MRTD
     case EU_EDL
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
     }
   }
 }
+extension ReadID_UI.AnalyticsManager {
+  public static func sendSessionFinishTransitionedEvent(session: ReadID_UI.ReadIDSession)
+}
 @_hasMissingDesignatedInitializers public class NFCLocationManager {
   public typealias LocationCallback = (ReadID_UI.NFCLocation?, (any Swift.Error)?) -> Swift.Void
   public typealias ChipSupportCallback = (ReadID_UI.NFCChipSupport?, (any Swift.Error)?) -> Swift.Void
   public static func getDocNFCLocation(session: ReadID_UI.ReadIDSession, mrzData: any ReadID_UI.MRZData, callback: @escaping ReadID_UI.NFCLocationManager.LocationCallback)
-  public static func getICAODocNFCLocation(session: ReadID_UI.ReadIDSession, documentCode: Swift.String, issuingCountry: Swift.String, dateOfBirth: Swift.String, dateOfExpiry: Swift.String, callback: @escaping ReadID_UI.NFCLocationManager.LocationCallback)
+  public static func getICAODocNFCLocation(session: ReadID_UI.ReadIDSession, documentCode: Swift.String, issuingCountry: Swift.String, dateOfBirth: Swift.String, dateOfExpiry _: Swift.String, callback: @escaping ReadID_UI.NFCLocationManager.LocationCallback)
   public static func getEDLDocNFCLocation(session: ReadID_UI.ReadIDSession, documentCode: Swift.String, issuingCountry: Swift.String, eDLVersion: Swift.String, callback: @escaping ReadID_UI.NFCLocationManager.LocationCallback)
   public static func getDocNFCChipSupport(session: ReadID_UI.ReadIDSession, mrzData: any ReadID_UI.MRZData, callback: @escaping ReadID_UI.NFCLocationManager.ChipSupportCallback)
   public static func getICAODocNFCChipSupport(session: ReadID_UI.ReadIDSession, documentCode: Swift.String, issuingCountry: Swift.String, dateOfBirth: Swift.String, dateOfExpiry: Swift.String, callback: @escaping ReadID_UI.NFCLocationManager.ChipSupportCallback)
@@ -1269,7 +1590,9 @@ extension ReadID_UI.Base {
     case CMAC
     case TLS1_PRF
     case HKDF
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
@@ -1282,12 +1605,16 @@ extension ReadID_UI.Base {
   public var bitsize: Swift.Int {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public var hash: Foundation.Data? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var subjectPublicKeyInfoHash: Foundation.Data? {
     get
   }
+  #endif
 }
 @_hasMissingDesignatedInitializers public class CertificateStore {
   @objc deinit
@@ -1296,18 +1623,114 @@ extension ReadID_UI.ReadIDSession : ReadID_UI.Commitable {
   public var isClientServerSession: Swift.Bool {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public var commitStatus: ReadID_UI.CommitStatus? {
     get
   }
+  #endif
   public var isExpired: Swift.Bool {
     get
   }
-  public func commit(completionHandler: @escaping (ReadID_UI.ReadIDSession?, (any Swift.Error)?) -> ())
-  public func retrieveIProovVerifyToken(completionHandler: @escaping (ReadID_UI.IProovResult<ReadID_UI.RetrieveIProovVerifyTokenResponse>?, (any Swift.Error)?) -> ())
-  public func validateIProovVerifyToken(token: Swift.String, completionHandler: @escaping (ReadID_UI.IProovResult<ReadID_UI.ValidateIProovVerifyTokenResponse>?, (any Swift.Error)?) -> ())
-  public func verifyOnfido(completionHandler: @escaping (ReadID_UI.VerifyOnfidoResponse?, (any Swift.Error)?) -> ())
-  public func verifyVeriff(submissionId: Swift.String? = nil, completionHandler: @escaping (ReadID_UI.VerifyVeriffResponse?, (any Swift.Error)?) -> ())
-  public func finish(completionHandler: @escaping (ReadID_UI.FinishResponse?, (any Swift.Error)?) -> ())
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func newSession(connectorConfiguration: ReadID_UI.ConnectorConfiguration, completionHandler: @escaping (ReadID_UI.ReadIDSession?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func newSession(connectorConfiguration: ReadID_UI.ConnectorConfiguration, dtcSessionData: ReadID_UI.DTCSessionData, completionHandler: @escaping (ReadID_UI.ReadIDSession?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func commit(completionHandler: @escaping (ReadID_UI.ReadIDSession?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func retrieveIProovVerifyToken(completionHandler: @escaping (ReadID_UI.IProovResult<ReadID_UI.RetrieveIProovVerifyTokenResponse>?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func validateIProovVerifyToken(token: Swift.String, completionHandler: @escaping (ReadID_UI.IProovResult<ReadID_UI.ValidateIProovVerifyTokenResponse>?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func verifyOnfido(completionHandler: @escaping (ReadID_UI.VerifyOnfidoResponse?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func verifyVeriff(submissionId: Swift.String? = nil, completionHandler: @escaping (ReadID_UI.VerifyVeriffResponse?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func downloadDTC(completionHandler: @escaping (ReadID_UI.DTC?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func finish(completionHandler: @escaping (ReadID_UI.FinishResponse?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+}
+public enum TestSession {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var readIDSessionData: Foundation.Data? {
+    get
+  }
+  #endif
+  @ReadID_UI.UserDefault public static var supportsExtendedLengthAPDUs: Swift.Bool {
+    get
+    set
+    _modify
+  }
+  @ReadID_UI.UserDefault public static var maxAPDUSize: Swift.Int {
+    get
+    set
+    _modify
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @ReadID_UI.UserDefault public static var firstVideoCaptureURL: Foundation.URL? {
+    get
+    set
+    _modify
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @ReadID_UI.UserDefault public static var secondVideoCaptureURL: Foundation.URL? {
+    get
+    set
+    _modify
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @ReadID_UI.UserDefault public static var imageCaptureURL: Foundation.URL? {
+    get
+    set
+    _modify
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @ReadID_UI.UserDefault public static var nfcSimulatedRead: Swift.String? {
+    get
+    set
+    _modify
+  }
+  #endif
+  public static func reset()
+  public enum Keys : Swift.String, Swift.CaseIterable {
+    case shouldDisableEcho
+    case firstVideoCaptureURL
+    case secondVideoCaptureURL
+    case imageCaptureURL
+    case nfcSimulatedRead
+    case supportsExtendedLengthAPDUs
+    case maxAPDUSize
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(rawValue: Swift.String)
+    #endif
+    public typealias AllCases = [ReadID_UI.TestSession.Keys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [ReadID_UI.TestSession.Keys] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+}
+@propertyWrapper public struct UserDefault<T> {
+  public init(key: Swift.String, defaultValue: T, userDefaults: Foundation.UserDefaults = .standard)
+  public var wrappedValue: T {
+    get
+    set
+  }
 }
 public protocol ReadIDEventDataParameter {
   var name: Swift.String { get }
@@ -1321,7 +1744,9 @@ public enum ReadIDEventResult : Swift.String, ReadID_UI.ReadIDEventDataParameter
   public var value: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -1335,7 +1760,9 @@ public enum ReadIDEventPageType : Swift.String, ReadID_UI.ReadIDEventDataParamet
   public var value: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -1349,7 +1776,9 @@ public enum ReadIDEventDocumentType : Swift.String, ReadID_UI.ReadIDEventDataPar
   public var value: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -1363,7 +1792,9 @@ public enum ReadIDEventAnimationFinishedMethod : Swift.String, ReadID_UI.ReadIDE
   public var value: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -1377,7 +1808,9 @@ public enum ReadIDEventNFCVerificationMethod : Swift.String, ReadID_UI.ReadIDEve
   public var value: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -1398,7 +1831,9 @@ public enum ReadIDEventVIZSecondCaptureReason : Swift.String, ReadID_UI.ReadIDEv
   public var value: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -1412,21 +1847,45 @@ public enum ReadIDEventNFCReadingFailureReason : Swift.String, ReadID_UI.ReadIDE
   public var value: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
 }
 public enum ReadIDEventScreen : Swift.String, ReadID_UI.ReadIDEventDataParameter {
-  case documentSelection, vizAnimation, vizScan, vizConfirmation, vizManualInput, vizPhotosResult, vizDataResult, vizPerformanceResult, mrzImage, vizFaceImage, vizImage, vizQRCodeImage, nfcAnimation, nfcStart, nfcHelp, nfcRead, nfcManualInput, nfcDataResult, nfcSecurityResult, nfcFaceImage, nfcSignatureImage
+  case documentSelection
+  case vizAnimation
+  case vizScan
+  case vizConfirmation
+  case vizManualInput
+  case vizPhotosResult
+  case vizDataResult
+  case vizPerformanceResult
+  case mrzImage
+  case vizFaceImage
+  case vizImage
+  case vizQRCodeImage
+  case nfcAnimation
+  case nfcStart
+  case nfcHelp
+  case nfcRead
+  case nfcManualInput
+  case nfcDataResult
+  case nfcSecurityResult
+  case nfcFaceImage
+  case nfcSignatureImage
   public var name: Swift.String {
     get
   }
   public var value: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -1451,7 +1910,9 @@ public enum ReadIDEventScreen : Swift.String, ReadID_UI.ReadIDEventDataParameter
     set
   }
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public func build(session: ReadID_UI.ReadIDSession, credentials: ReadID_UI.AccessControlCredentials? = nil, callback: @escaping ReadID_UI.MRTDReadRequestBuilder.Callback) throws
+  #endif
   @objc deinit
 }
 public enum SessionManagerErrors : Swift.Error {
@@ -1495,7 +1956,6 @@ extension ReadID_UI.MRTDError {
 public class TemporaryAnalyticsConfigurationInnovalorInternalDoNotUse {
   public static var analyticsEnabled: Swift.Bool
   public static var dataminingURL: Foundation.URL
-  #warning("For ReadID use only. Do not use or modify this value in your apps")
   public static var ocrConfidenceThreshold: Swift.Float
   @objc deinit
 }
@@ -1539,7 +1999,9 @@ public enum Files : ReadID_UI.File, Swift.CaseIterable {
   public static let defaultICAOGroups: [ReadID_UI.Files]
   public static let defaultEDLGroups: [ReadID_UI.Files]
   public func toNumber() -> Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: ReadID_UI.File)
+  #endif
   public typealias AllCases = [ReadID_UI.Files]
   public typealias RawValue = ReadID_UI.File
   nonisolated public static var allCases: [ReadID_UI.Files] {
@@ -1549,6 +2011,7 @@ public enum Files : ReadID_UI.File, Swift.CaseIterable {
     get
   }
 }
+
 public struct CaptureResult {
   public struct Feature {
     public enum Result {
@@ -1633,14 +2096,30 @@ extension ReadID_UI.CaptureResult.QRCodeResult : Swift.Equatable {
   @objc deinit
 }
 public protocol VIZResult {
+  #if compiler(>=5.3) && $NonescapableTypes
   var frontCaptureResult: ReadID_UI.CaptureResult? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var backCaptureResult: ReadID_UI.CaptureResult? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var mrzData: (any ReadID_UI.MRZData)? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var nfcAccessKey: ReadID_UI.NFCAccessKey? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentInfo: ReadID_UI.DocumentInfo? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentType: ReadID_UI.DocumentType? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var readIDSession: ReadID_UI.ReadIDSession? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var nfcChipSupport: ReadID_UI.NFCChipSupport? { get }
+  #endif
 }
 public struct ClientConfiguration {
   public var sessionType: ReadID_UI.SessionType
@@ -1651,16 +2130,21 @@ public protocol NFCBaseSettings {
   var shouldReadImages: Swift.Bool { get set }
   var allowSkipReadingAfterAttempts: Swift.Int { get set }
   var accessControlOption: ReadID_UI.AccessControlOption { get set }
+  #if compiler(>=5.3) && $NonescapableTypes
   var cscaMasterLists: [(data: Foundation.Data, certificate: Foundation.Data)]? { get set }
+  #endif
   var extendedLengthAPDUPreference: ReadID_UI.ExtendedLengthAPDUPreference { get set }
   var allowResumeNFCReading: Swift.Bool { get set }
+  #if compiler(>=5.3) && $NonescapableTypes
   var allowedDataGroupsToRead: [ReadID_UI.DataGroup]? { get set }
+  #endif
   var shouldShowInstructionCarousel: Swift.Bool { get set }
 }
 public enum ReadIDError : Swift.Error {
   case invalidConfiguration(msg: Swift.String)
   case nfcNotSupported
 }
+
 public protocol VIZBaseSettings {
   var shouldShowDocumentSelection: Swift.Bool { get set }
   var shouldShowVIZConfirmation: Swift.Bool { get set }
@@ -1670,6 +2154,12 @@ public protocol VIZBaseSettings {
   var shouldPlayShutterSound: Swift.Bool { get set }
   var shouldShowTorchButton: Swift.Bool { get set }
   var vizCaptureTimeout: Foundation.TimeInterval { get set }
+}
+public struct DTC : Swift.Codable {
+  public let rawData: Foundation.Data
+  public init(rawData: Foundation.Data)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public enum DataGroup : Swift.String, Swift.CaseIterable {
   case ICAO_DG1
@@ -1703,7 +2193,9 @@ public enum DataGroup : Swift.String, Swift.CaseIterable {
   case EDL_DG13
   case EDL_DG14
   public static let defaulDataGroups: [ReadID_UI.DataGroup]
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.DataGroup]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [ReadID_UI.DataGroup] {
@@ -1732,7 +2224,9 @@ public enum DataGroup : Swift.String, Swift.CaseIterable {
   final public let vizImage: UIKit.UIImage
   final public let vizImageRotation: Swift.Int
   final public func toString() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func getCrop(column x: Swift.Int, line y: Swift.Int, width: Swift.Int, height: Swift.Int) -> CoreGraphics.CGImage?
+  #endif
   @objc deinit
 }
 public enum NetworkError : Swift.Error {
@@ -1758,7 +2252,9 @@ public enum NetworkError : Swift.Error {
 final public class AllEDLDataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.EDLData)?
+  #endif
   @objc deinit
 }
 public enum ScreenOrientation : Swift.String, Swift.CaseIterable {
@@ -1767,7 +2263,9 @@ public enum ScreenOrientation : Swift.String, Swift.CaseIterable {
   case landscapeOnly
   case inherit
   public static var allCases: [ReadID_UI.ScreenOrientation]
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.ScreenOrientation]
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
@@ -1777,34 +2275,55 @@ public enum ScreenOrientation : Swift.String, Swift.CaseIterable {
 public protocol EDLFraData : ReadID_UI.EDLData {
   var issuingCountry: Swift.String { get }
   mutating func setIssuingCountry(_ issuingCountry: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var issuingCountryImage: CoreGraphics.CGImage? { get }
+  #endif
   var documentNumber: Swift.String { get }
   mutating func setDocumentNumber(_ documentNumber: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentNumberImage: CoreGraphics.CGImage? { get }
+  #endif
   var compositeInput1: Swift.String { get }
   mutating func setCompositeInput1(_ compositeInput1: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var compositeInput1Image: CoreGraphics.CGImage? { get }
+  #endif
   var compositeCheckDigit1: Swift.String { get }
   mutating func setCompositeCheckDigit1(_ compositeCheckDigit1: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var compositeCheckDigit1Image: CoreGraphics.CGImage? { get }
+  #endif
   var isCompositeCheckDigit1Correct: Swift.Bool { get }
   var dateOfExpiry: Swift.String { get }
   mutating func setDateOfExpiry(_ dateOfExpiry: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var dateOfExpiryImage: CoreGraphics.CGImage? { get }
+  #endif
   var lastName: Swift.String { get }
   mutating func setLastName(_ lastName: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var lastNameImage: CoreGraphics.CGImage? { get }
+  #endif
 }
 public protocol MRTDImage {
+  #if compiler(>=5.3) && $NonescapableTypes
   var imageData: Foundation.Data? { get }
+  #endif
   var isRenderable: Swift.Bool { get }
-  func getImage(image: @escaping (UIKit.UIImage?, (any Swift.Error)?) -> ())
+  #if compiler(>=5.3) && $NonescapableTypes
+  func getImage(image: @escaping (UIKit.UIImage?, (any Swift.Error)?) -> Swift.Void)
+  #endif
 }
+
+
+
 @_hasMissingDesignatedInitializers public class VIZQRCodeSession {
   public enum QRCodeType : Swift.String {
     case DutchBSN
     case Unknown
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
@@ -1817,18 +2336,23 @@ public protocol MRTDImage {
 final public class TD3DataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.TD3Data)?
+  #endif
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class FinishResponse {
   @objc deinit
 }
+
 public struct ConsolidatedIdentityData {
   public enum Status : Swift.String {
     case SUCCEEDED
     case FAILED
     case NOT_CHECKED
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
@@ -1838,7 +2362,9 @@ public struct ConsolidatedIdentityData {
     case SUCCEEDED
     case FAILED
     case PENDING
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
@@ -1849,7 +2375,9 @@ public struct ConsolidatedIdentityData {
     case FAILED
     case NOT_CHECKED
     case NOT_AVAILABLE
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
@@ -1860,7 +2388,9 @@ public struct ConsolidatedIdentityData {
     case DISAPPROVED_MANUAL
     case APPROVED_AUTOMATIC
     case APPROVED_MANUAL
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
@@ -1870,7 +2400,10 @@ public struct ConsolidatedIdentityData {
     case VISUAL_AUTOMATIC
     case VISUAL_MANUAL
     case CHIP
+    case DTC
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
@@ -1947,14 +2480,31 @@ public struct OnfidoCheck : Swift.Decodable {
 @_hasMissingDesignatedInitializers public class VIZSimulatorConfiguration {
   public static var record: Swift.Bool
   public static var cameraSimulatedImage: Foundation.URL?
-  public static var cameraSimulationMovie: Foundation.URL?
+  public static var cameraSimulationMovie: Foundation.URL? {
+    get
+    set
+  }
   @objc deinit
 }
+
+
+
+
+
+
+
+
+
+
+
+
 @available(*, deprecated, message: "Do not use this type. It shouldn't have been .")
 final public class AllDataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.MRZData)?
+  #endif
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class VIZFlow : ReadID_UI.Flow, ReadID_UI.VIZBaseSettings {
@@ -1971,7 +2521,9 @@ final public class AllDataFactory {
 public enum VIZFallbackMode : Swift.String, Swift.CaseIterable {
   case alwaysScanBothSides
   case auto
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.VIZFallbackMode]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [ReadID_UI.VIZFallbackMode] {
@@ -1988,7 +2540,9 @@ public enum VIZFallbackMode : Swift.String, Swift.CaseIterable {
 }
 @_hasMissingDesignatedInitializers public class CSCAMasterList : ReadID_UI.CertificateStore {
   public init(fromData: Foundation.Data, verifyUsing certificate: ReadID_UI.X509Certificate) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   convenience public init?(bundle: Foundation.Bundle = Bundle.main, masterListFile: Swift.String, certificateFile: Swift.String) throws
+  #endif
   @objc deinit
 }
 public enum ReadIDEventData {
@@ -2048,7 +2602,9 @@ public enum DateSeparator : Swift.String {
   case strokes
   case dots
   case spaces
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2098,20 +2654,48 @@ public protocol TDData : ReadID_UI.MRZData {
   mutating func setLastName(_ lastName: Swift.String) throws
   var firstName: Swift.String { get }
   mutating func setFirstName(_ firstName: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentCodeImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var nationalityImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var issuingCountryImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentNumberImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var documentNumberCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var dateOfBirthImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var dateOfBirthCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var dateOfExpiryImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var dateOfExpiryCheckDigitImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var genderImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var optionalDataImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var nameImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var firstNameImage: CoreGraphics.CGImage? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var lastNameImage: CoreGraphics.CGImage? { get }
+  #endif
 }
 indirect public enum Log : Swift.ExpressibleByStringLiteral, Swift.ExpressibleByStringInterpolation, Swift.CustomStringConvertible {
   public typealias StringLiteralType = Swift.String
@@ -2135,15 +2719,21 @@ public struct VeriffVerification : Swift.Decodable {
   public let status: Swift.String
   public let reason: Swift.String?
   public let reasonCode: Swift.Int?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(status: Swift.String, reason: Swift.String?, reasonCode: Swift.Int?)
+  #endif
   public init(from decoder: any Swift.Decoder) throws
 }
+
+
 public enum VIZResultDataMode : Swift.String, Swift.CaseIterable {
   case none
   case accessControl
   case advancePassengerInformation
   case all
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.VIZResultDataMode]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [ReadID_UI.VIZResultDataMode] {
@@ -2166,25 +2756,33 @@ public enum NFCError : Foundation.LocalizedError {
   case FileNotFound
   case WrongParameters
   case UnknownStatusWord
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
-extension CoreNFC.NFCTag : Swift.CustomStringConvertible {
+
+extension CoreNFC.NFCTag : @retroactive Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
 public protocol Commitable {
-  func commit(completionHandler: @escaping (ReadID_UI.ReadIDSession?, (any Swift.Error)?) -> ()) throws
+  #if compiler(>=5.3) && $NonescapableTypes
+  func commit(completionHandler: @escaping (ReadID_UI.ReadIDSession?, (any Swift.Error)?) -> Swift.Void) throws
+  #endif
 }
+
 public enum OrchestrationState : Swift.String, Swift.Decodable {
   case initialized
   case inProgress
   case awaitingResult
   case complete
   case error
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2298,7 +2896,9 @@ public enum ExtendedLengthAPDUPreference : Swift.String, Swift.CaseIterable, Swi
   public var description: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.ExtendedLengthAPDUPreference]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [ReadID_UI.ExtendedLengthAPDUPreference] {
@@ -2310,8 +2910,6 @@ public enum ExtendedLengthAPDUPreference : Swift.String, Swift.CaseIterable, Swi
 }
 @_hasMissingDesignatedInitializers public class AnalyticsManager {
   public static var shared: ReadID_UI.AnalyticsManager
-  public var configuration: ReadID_UI.AnalyticsConfiguration?
-  public static var callbackQueue: Dispatch.DispatchQueue
   @objc deinit
 }
 public protocol MachineReadableZone : AnyObject {
@@ -2336,7 +2934,9 @@ public enum MachineReadableZoneSource {
 final public class AllTDDataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.TDData)?
+  #endif
   @objc deinit
 }
 @_inheritsConvenienceInitializers public class NFCWithAccessControlFlow : ReadID_UI.VIZNFCFlow {
@@ -2346,24 +2946,36 @@ final public class AllTDDataFactory {
   @objc deinit
 }
 extension ReadID_UI.Base.CaptureResult {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func extractFeature(_ feature: ReadID_UI.Feature) -> UIKit.UIImage?
+  #endif
+  public var displayDocumentImage: UIKit.UIImage {
+    get
+  }
 }
 @_hasMissingDesignatedInitializers public class NFCOnlyFlow : ReadID_UI.NFCFlow {
   public var preventChipSupportDialog: Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(credentials: ReadID_UI.NFCAccessKey, documentInfo: ReadID_UI.DocumentInfo? = nil)
+  #endif
   @objc deinit
 }
 public enum SessionType : Swift.String {
   case standard
   case light
+  case dtc
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
 }
 public protocol VisualDocumentCapture {
+  #if compiler(>=5.3) && $NonescapableTypes
   func capturePage(pageConfiguration: ReadID_UI.PageCaptureConfiguration, alternativePageConfigurations: [ReadID_UI.PageCaptureConfiguration]?, captureConfiguration: ReadID_UI.CaptureRequestConfiguration, session: ReadID_UI.ReadIDSession, callback: @escaping ReadID_UI.VisualDocumentCaptureCallback)
+  #endif
   func cancelPageCapture()
 }
 extension ReadID_UI.VisualDocumentCapture {
@@ -2386,14 +2998,18 @@ public enum QualityAssessment {
   }
 }
 public protocol VisualDocumentCaptureDelegate {
+  #if compiler(>=5.3) && $NonescapableTypes
   func captureStatusUpdated(detectedDocument: ReadID_UI.PageCaptureConfiguration?, quality: ReadID_UI.QualityAssessment?)
+  #endif
 }
 public struct CaptureRequestConfiguration : Swift.Equatable {
   public let description: Swift.String
   public let captureOptions: ReadID_UI.CaptureRequestOptions
   public let mrzValidation: ReadID_UI.MRZValidation
   public let allowManualCaptureAfter: CoreFoundation.CFTimeInterval?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(description: Swift.String, captureOptions: ReadID_UI.CaptureRequestOptions, mrzValidation: ReadID_UI.MRZValidation, allowManualCaptureAfter: CoreFoundation.CFTimeInterval?)
+  #endif
   public static let defaultAuto: ReadID_UI.CaptureRequestConfiguration
   public static let allowManual: ReadID_UI.CaptureRequestConfiguration
   public static let accessControl: ReadID_UI.CaptureRequestConfiguration
@@ -2403,7 +3019,9 @@ public enum MRZValidation : Swift.String, Swift.CaseIterable {
   case none
   case accessControl
   case full
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [ReadID_UI.MRZValidation]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [ReadID_UI.MRZValidation] {
@@ -2416,7 +3034,9 @@ public enum MRZValidation : Swift.String, Swift.CaseIterable {
 public enum QRCodeValidation : Swift.String {
   case NoValidation
   case DutchBSN
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2473,7 +3093,9 @@ public enum CaptureMode : Swift.String {
   case Automatic
   case AutomaticDegraded
   case Manual
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2493,7 +3115,9 @@ public enum QualityCriterionResult : Swift.String {
   case failed
   case degraded
   case disabled
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2514,7 +3138,9 @@ public enum FeatureRequirementResult : Swift.String {
   case passed
   case failed
   case degraded
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2537,7 +3163,9 @@ public enum MRZValidator : Swift.Int, Swift.Codable, Swift.CustomStringConvertib
   public var description: Swift.String {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -2548,7 +3176,9 @@ extension ReadID_UI.Base {
     case front
     case back
     case custom
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.Int)
+    #endif
     public typealias AllCases = [ReadID_UI.Base.PageType]
     public typealias RawValue = Swift.Int
     nonisolated public static var allCases: [ReadID_UI.Base.PageType] {
@@ -2566,7 +3196,9 @@ public struct PageCaptureConfiguration : Swift.Equatable {
   public let pageType: ReadID_UI.Base.PageType
   public let mrzValidator: ReadID_UI.MRZValidator?
   public let qrCodeValidation: ReadID_UI.QRCodeValidation
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(_ description: Swift.String, captureOptions: ReadID_UI.PageCaptureOptions, pageMetrics: ReadID_UI.PageMetrics, pageType: ReadID_UI.Base.PageType, mrzValidator: ReadID_UI.MRZValidator? = nil, qrCodeValidation: ReadID_UI.QRCodeValidation = .NoValidation)
+  #endif
   public static let passportDataPageFront: ReadID_UI.PageCaptureConfiguration
   public static let passportDataPageBack: ReadID_UI.PageCaptureConfiguration
   public static let identityCardTD2Front: ReadID_UI.PageCaptureConfiguration
@@ -2603,7 +3235,9 @@ public enum FaceOrientation : Swift.Int, Swift.Equatable {
   case upright
   case rotatedClockwise
   case rotatedCounterClockwise
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -2635,7 +3269,9 @@ public struct PageMetrics : Swift.Equatable {
   public let minMRZCharacterSize: CoreFoundation.CGSize?
   public let maxMRZCharacterSize: CoreFoundation.CGSize?
   public let allowDefaultFaceImageFallback: Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(description: Swift.String, aspectRatio: Swift.ClosedRange<Swift.Double>, physicalSize: CoreFoundation.CGSize, mrzLocation: CoreFoundation.CGRect? = nil, faceImages: [ReadID_UI.FaceImageMetrics]? = nil, allowedMRZSizes: [ReadID_UI.MRZSize]? = nil, minMRZCharacterSize: CoreFoundation.CGSize? = nil, maxMRZCharacterSize: CoreFoundation.CGSize? = nil, allowDefaultFaceImageFallback: Swift.Bool)
+  #endif
   public static let ICAO_TD1: ReadID_UI.PageMetrics
   public static let ICAO_TD2: ReadID_UI.PageMetrics
   public static let ICAO_TD3: ReadID_UI.PageMetrics
@@ -2654,7 +3290,9 @@ public struct PageMetrics : Swift.Equatable {
 public enum ExtendedLengthSupport : Swift.String {
   case disabled
   case enabled
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2678,7 +3316,9 @@ extension ReadID_UI.ReadIDUI {
 final public class MRVBDataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.MRVBData)?
+  #endif
   @objc deinit
 }
 public enum ReadIDImage : Swift.String {
@@ -2689,7 +3329,20 @@ public enum ReadIDImage : Swift.String {
   case torchButtonOffPressed
   case manualInputButton
   case manualInputButtonPressed
+  case replayButton
+  case documentFaceImage
+  case nfcIcon
+  case euFlagImage
+  case qrCodeImage
+  case barcodeImage
+  case globeSymbolImage
+  case nfcSymbolImage
+  case helpIcon
+  case tableImage
+  case handBubbleImage
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2698,7 +3351,9 @@ public enum ReadIDImage : Swift.String {
 final public class MRVADataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.MRVAData)?
+  #endif
   @objc deinit
 }
 public struct PACEInfo : Swift.Equatable {
@@ -2707,7 +3362,9 @@ public struct PACEInfo : Swift.Equatable {
 public enum OnfidoResult : Swift.String, Swift.Decodable {
   case clear
   case consider
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2716,7 +3373,9 @@ public enum OnfidoResult : Swift.String, Swift.Decodable {
 public enum OnfidoCheckStatus : Swift.String, Swift.Decodable {
   case awaitingApproval
   case complete
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2726,7 +3385,9 @@ public enum OnfidoReportStatus : Swift.String, Swift.Decodable {
   case awaitingData
   case inProgress
   case complete
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2882,7 +3543,9 @@ public enum Gender : Swift.String {
   case FEMALE
   case UNKNOWN
   case UNSPECIFIED
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -2962,7 +3625,9 @@ public enum AccessControlCredentials : Swift.CustomStringConvertible {
 final public class EDLFraDataFactory {
   public init()
   final public func canCreate(mrz: any ReadID_UI.MachineReadableZone) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func create(mrz: any ReadID_UI.MachineReadableZone) -> (any ReadID_UI.EDLFraData)?
+  #endif
   @objc deinit
 }
 public struct ReadIDEvent : Swift.CustomStringConvertible {
@@ -3004,8 +3669,8 @@ public enum Screen : Swift.Equatable {
   case nfcRead
   case nfcManualInput
   case nfcResult
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: ReadID_UI.Screen, b: ReadID_UI.Screen) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -3028,8 +3693,8 @@ public enum FailureReason : Swift.Error, Swift.Equatable {
   case backNavigation
   case wrongDocumentType
   case vizCaptureTimeout
-  public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: ReadID_UI.FailureReason, b: ReadID_UI.FailureReason) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -3041,8 +3706,19 @@ public struct RetrieveIProovVerifyTokenResponse : Swift.Decodable {
   public let attemptsLeft: Swift.Int
   public init(from decoder: any Swift.Decoder) throws
 }
+public struct DTCSessionData : Swift.Codable {
+  public let opaqueId: Swift.String?
+  public let dtc: Foundation.Data
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(dtc: ReadID_UI.DTC, opaqueId: Swift.String? = nil)
+  #endif
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
 @_hasMissingDesignatedInitializers public class CAParameters {
+  #if compiler(>=5.3) && $NonescapableTypes
   convenience public init(keyId: Foundation.Data?, oid: Swift.String, ephemeralPublicKey: Swift.OpaquePointer!, challenge: Foundation.Data) throws
+  #endif
   @objc deinit
 }
 extension ReadID_UI.NFCResultDataMode : Swift.Equatable {}
@@ -3099,6 +3775,9 @@ extension ReadID_UI.Base.DocumentType : Swift.RawRepresentable {}
 extension ReadID_UI.PublicKey.KeyType : Swift.Equatable {}
 extension ReadID_UI.PublicKey.KeyType : Swift.Hashable {}
 extension ReadID_UI.PublicKey.KeyType : Swift.RawRepresentable {}
+extension ReadID_UI.TestSession.Keys : Swift.Equatable {}
+extension ReadID_UI.TestSession.Keys : Swift.Hashable {}
+extension ReadID_UI.TestSession.Keys : Swift.RawRepresentable {}
 extension ReadID_UI.ReadIDEventResult : Swift.Equatable {}
 extension ReadID_UI.ReadIDEventResult : Swift.Hashable {}
 extension ReadID_UI.ReadIDEventResult : Swift.RawRepresentable {}
@@ -3151,6 +3830,8 @@ extension ReadID_UI.VIZQRCodeSession.QRCodeType : Swift.RawRepresentable {}
 extension ReadID_UI.QRCodeValidation : Swift.Equatable {}
 extension ReadID_UI.QRCodeValidation : Swift.Hashable {}
 extension ReadID_UI.QRCodeValidation : Swift.RawRepresentable {}
+extension ReadID_UI.VerificationStatus.ReasonCode : Swift.Equatable {}
+extension ReadID_UI.VerificationStatus.ReasonCode : Swift.Hashable {}
 extension ReadID_UI.ConsolidatedIdentityData.Status : Swift.Equatable {}
 extension ReadID_UI.ConsolidatedIdentityData.Status : Swift.Hashable {}
 extension ReadID_UI.ConsolidatedIdentityData.Status : Swift.RawRepresentable {}
@@ -3191,8 +3872,6 @@ extension ReadID_UI.OrchestrationState : Swift.Hashable {}
 extension ReadID_UI.OrchestrationState : Swift.RawRepresentable {}
 extension ReadID_UI.SessionError : Swift.Equatable {}
 extension ReadID_UI.SessionError : Swift.Hashable {}
-extension ReadID_UI.VerificationStatus.ReasonCode : Swift.Equatable {}
-extension ReadID_UI.VerificationStatus.ReasonCode : Swift.Hashable {}
 extension ReadID_UI.ExtendedLengthAPDUPreference : Swift.Equatable {}
 extension ReadID_UI.ExtendedLengthAPDUPreference : Swift.Hashable {}
 extension ReadID_UI.ExtendedLengthAPDUPreference : Swift.RawRepresentable {}
