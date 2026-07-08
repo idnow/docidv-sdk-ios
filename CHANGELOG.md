@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.10.0] - 2025-06-25
+### Added
+- Update ReadID
+- Update eID
+- Update Sunflower
+- Signature page extraction
+### Fixed
+- Error sent when the used starts an already finished token.
+- Accessibility on links
+
 ## [1.8.0] - 2025-05-18
 ### Added
 - QES support
