@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.11.0] - 2025-07-23
+### Added
+- Download pdf as a zip in QES
+- Support 13 characters in IdentID
+
+### Fixed
+- Fix wrong fraud detection
+- Fallback issue on NFC
+- T&C links translation
+
 ## [1.10.0] - 2025-06-25
 ### Added
 - Update ReadID
