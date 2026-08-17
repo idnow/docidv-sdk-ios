@@ -1,6 +1,15 @@
 # Changelog
 
-## [1.11.0] - 2025-07-23
+## [1.12.0] - 2026-08-13
+### Added
+- Update eID 
+- Update Sunflower
+
+### Fixed
+- Fixed an issue that could cause the app to freeze when retrying a QES identification
+- Fixed some NFC issues
+
+## [1.11.0] - 2026-07-23
 ### Added
 - Download pdf as a zip in QES
 - Support 13 characters in IdentID
@@ -10,7 +19,7 @@
 - Fallback issue on NFC
 - T&C links translation
 
-## [1.10.0] - 2025-06-25
+## [1.10.0] - 2026-06-25
 ### Added
 - Update ReadID
 - Update eID
@@ -20,7 +29,7 @@
 - Error sent when the used starts an already finished token.
 - Accessibility on links
 
-## [1.8.0] - 2025-05-18
+## [1.8.0] - 2026-05-18
 ### Added
 - QES support
 
@@ -28,29 +37,29 @@
 - Fixed a crash when the SDK is used in a Swift 6 app.
 - Fixed the issue where two error screens where shown in a row.
 
-## [1.7.0] - 2025-04-30
+## [1.7.0] - 2026-04-30
 ### Added
 - Update eID Governikus version to 1.3.4
 
-## [1.6.0] - 2025-03-31
+## [1.6.0] - 2026-03-31
 ### Added
 - eID Governikus feature support
 
-## [1.4.0] - 2025-03-02
+## [1.4.0] - 2026-03-02
 ### Added
 - Automatic recovery when connection is lost and restored during identification.
 
 ### Fixed
 - Several bugfixes and technical improvements. 
 
-## [1.3.0] - 2025-02-12
+## [1.3.0] - 2026-02-12
 ### Added
 - Full country names translation in screens
 
 ### Fixed
 - Stability enhancements about
 
-## [1.2.0] - 2025-01-22
+## [1.2.0] - 2026-01-22
 ### Added
 - Further progress toward full WCAG 2.1 compliance.
 - More components updated for improved accessibility.
