@@ -14,7 +14,11 @@
 - [Integration](#integration)
   - [Starting the SDK](#starting-the-sdk)
   - [Handling errors](#handling-errors)
+- [Sample App](#sample-app)
 - [Additional Features](#additional-features)
+- [Accessibility](#accessibility)
+- [Support and more information](#support-and-more-information)
+- [License](#license)
 
 ## About
 Welcome to the IDnow DocIDV project. This repository provides the official Swift Package for the DocIDV iOS SDK, which enables you to capture identity documents using the device's camera, performing several security checks and offering various other features.
@@ -24,7 +28,9 @@ The DocIDV framework incorporates the IDnow platform into your iOS app. We offer
 - **DocIDV**: The SDK without the bank transfer functionality.
 - **DocIDV-with-XS2A**: The SDK including the bank transfer functionality.
 
-This guide provides detailed instructions on how to install, set up, and integrate the SDK.
+This guide provides a quick overview of how to install, set up, and integrate the SDK. For
+the complete integration guide, customization options, and API reference, see the official
+documentation at **[doc.idnow.de/sdk/ios/overview](https://doc.idnow.de/sdk/ios/overview)**.
 
 ## Key Features
 
@@ -116,6 +122,13 @@ This code calls the main `start` method to launch the DocIDV library. It takes s
 | `viewController` | `UIViewController` | The view controller that will present the SDK. It is also used to determine the appearance mode (light/dark) from your app. |
 | `bindingKey` | `String` | Used for device binding use cases. It helps establish a correlation between a user's verified identity and their mobile device. This is particularly useful for device authentication and re-authentication scenarios. The `bindingKey` for a completed identification can be fetched via an API endpoint and compared with the one used during SDK initialization. |
 
+Most parameters are optional. In its simplest form, the SDK only needs a `token` and a
+`viewController`:
+
+```swift
+try await IDnowDocIDV.shared.start(token: token,
+                                   viewController: viewController)
+```
 
 ### Handling errors
 
@@ -151,6 +164,25 @@ public enum TokenError {
 
 🎉 That's it! DocIDV can now be launched from your host app.
 
+## Sample App
+
+A minimal SwiftUI sample app is included in this repository under [`SampleApp/`](./SampleApp).
+It shows the smallest possible integration: enter an identification token, tap **Start the
+SDK**, and handle the success/error result.
+
+To run it:
+
+1. Open `SampleApp/docidvsample.xcodeproj` in Xcode.
+2. Select the `docidvsample` scheme and a **real device** as the run destination (NFC and
+   the camera are not available in the Simulator).
+3. Set your own signing team in *Signing & Capabilities*.
+4. Build and run, paste a valid identification token, and tap **Start the SDK**.
+
+The relevant integration code lives in
+[`SampleApp/docidvsample/ContentView.swift`](./SampleApp/docidvsample/ContentView.swift),
+and the required camera/NFC/microphone permissions are already declared in the sample's
+`info.plist` and `docidvsample.entitlements` — a handy reference when configuring your own app.
+
 ## Additional Features
 ### Dark Mode
 Each screen of the SDK natively supports dark mode. It automatically adopts your app's appearance settings (light, dark, or system default).
@@ -182,3 +214,26 @@ The SDK supports multiple languages (ISO 639-1). The list of supported languages
 * Swedish
 * Turkish
 * Ukrainian
+
+## Accessibility
+
+DocIDV is built with accessibility in mind, following iOS accessibility guidelines and
+working toward WCAG 2.1 compliance. It supports the standard iOS assistive technologies:
+
+* **VoiceOver:** meaningful labels, logical focus order, custom actions, and clear
+  announcements for component states (error, selected, disabled, progress).
+* **Dynamic Type:** adjustable text size and spacing that honor the user's system
+  preferences.
+* **Content descriptions:** proper descriptions for images and icons.
+
+## Support and more information
+
+* 📚 **Full documentation:** [doc.idnow.de/sdk/ios/overview](https://doc.idnow.de/sdk/ios/overview)
+* 🛟 **Support portal:** [support.idnow.io](https://support.idnow.io/s/) — for technical
+  questions or to raise an issue. You can also reach out to your account manager.
+* See the [CHANGELOG](./CHANGELOG.md) for release notes.
+
+## License
+
+Use of the DocIDV SDK is governed by the IDnow SDK License Agreement. See
+[LICENSE.txt](./LICENSE.txt) for the full terms.
