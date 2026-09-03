@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.13.0] - 2026-09-03
+### Added
+- Added error screen when QES flow is started without documents configured
+- Open privacy policy link and terms & conditions link within the app/SDK without opening a browser
+
 ## [1.12.0] - 2026-08-13
 ### Added
 - Update eID 
