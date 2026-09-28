@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.14.0] - 2026-09-24
+### Added
+- Support the multiple documents flow
+- New OTP confirmation mode using email adress
+- Update Unissey to version 5.0.0
+- Update Sunflower to version 2.2.2
+- Update eID Governikus to version 1.5.1
+- Update default theme with new redesigned IDnow brand (colors and fonts)
+- Support new EU citizen card
+
 ## [1.13.0] - 2026-09-03
 ### Added
 - Added error screen when QES flow is started without documents configured

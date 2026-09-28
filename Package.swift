@@ -17,35 +17,35 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/idnow/eid-sdk-ios.git", exact: "1.3.9"),
-        .package(url: "https://github.com/unissey/sdk-ios.git", exact: "4.0.0"),
-        .package(url: "https://github.com/idnow/sunflower-sdk-ios.git", exact: "2.1.11")
+        .package(url: "https://github.com/idnow/eid-sdk-ios.git", exact: "1.5.1"),
+        .package(url: "https://github.com/unissey/sdk-ios.git", exact: "5.0.0"),
+        .package(url: "https://github.com/idnow/sunflower-sdk-ios.git", exact: "2.2.2")
     ],
     targets: [
         .binaryTarget(
             name: "DocIDVCommon",
-            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.13.0/DocIDVCommon.xcframework.zip",
-            checksum: "60fa9a3f8392b8d97013890b990a7288499cb3abe7d4726b37c2a11d209c2852"
+            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.14.0/DocIDVCommon.xcframework.zip",
+            checksum: "1f6b6870b5697d1d9824b58e5e39e3671b3ffbd85147fc649af11fb05f3207c3"
         ),
         .binaryTarget(
             name: "DocIDV",
-            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.13.0/DocIDV.xcframework.zip",
-            checksum: "8cd144e8ef2246720668493070807bea3ef6105b15826550c95e1ba8614fb9cc"
+            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.14.0/DocIDV.xcframework.zip",
+            checksum: "0e86562a7ed9c23ee53ad9eed8ff9f7458b96184df6d1131076df29ba4490b08"
         ),
         .binaryTarget(
             name: "DocIDVAIModule",
-            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.13.0/DocIDVAIModule.xcframework.zip",
-            checksum: "97ed9d641d7386b9f004edc9930a5cf588edaafc0b94694c1680fb955feec8ef"
+            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.14.0/DocIDVAIModule.xcframework.zip",
+            checksum: "b15d290d8e1a44d86bb5827778380a5d780b8720d34ddbfb31286a24dc51f60e"
         ),
         .binaryTarget(
             name: "DocIDVAI",
-            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.13.0/DocIDVAI.xcframework.zip",
-            checksum: "d4b88ba7ee6c6d1dc34295f2d955d5e9aa5aa6265bc8a01a9119e5beb85e0a4a"
+            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.14.0/DocIDVAI.xcframework.zip",
+            checksum: "88369d70d300b9a918635d55a44aecbb03d615584566c1fb6d117b477e7a3bde"
         ),
         .binaryTarget(
             name: "DocIDVEIDGovernikusModule",
-            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.13.0/DocIDVEIDGovernikusModule.xcframework.zip",
-            checksum: "74917330e42bea065ab61b1562b7cb0879c2389aa3e2abc6782c9dfd53913bc2"
+            url: "https://github.com/idnow/docidv-sdk-ios/releases/download/1.14.0/DocIDVEIDGovernikusModule.xcframework.zip",
+            checksum: "1bf0f81cbf204bd0ad93de98fb09174037d32ce7c7c72b06360aaa81650aee3d"
         ),
         .binaryTarget(
             name: "FaceTecSDK",
