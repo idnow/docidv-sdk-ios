@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.15.0] - 2026-10-15
+### Added
+- Support unissey liveness in a webview flow
+- Add a new "Before Starting" informational screen
+
+### Fixed
+- Fixed Trustpilot rating screen not appearing after identification completion
+- Fix expired session issue
+
 ## [1.14.0] - 2026-09-24
 ### Added
 - Support the multiple documents flow
