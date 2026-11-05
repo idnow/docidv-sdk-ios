@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.19.0] - 2026-11-05
+### Added
+- Give the possibility to prefilled token from a web redirection
+### Fixed
+- Fix crash on iPad with NFC session
+
 ## [1.15.0] - 2026-10-15
 ### Added
 - Support unissey liveness in a webview flow
